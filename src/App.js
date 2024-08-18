@@ -15,6 +15,8 @@ import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
 import BookingConsultation from './Components/BookingConsultation.js';
 import Notification from './Components/Notification/Notification';
 import ReviewForm from './Components/ReviewForm/ReviewForm';
+import ProfileForm from './Components/ProfileCard/ProfileCard';
+import ReportsLayout from './Components/ReportsLayout/ReportsLayout';
 
 // Function component for the main App
 function App() {
@@ -41,6 +43,9 @@ function App() {
           <Route path="/search/doctors" element={<FindDoctorSearch />} />
           <Route path="/booking-consultation" element={<BookingConsultation />} />
           <Route path='/reviews' element={<ReviewForm />} />
+          <Route path='/profile' element={<ProfileForm />} />
+          <Route path='/reports' element={<ReportsLayout />} />
+
 
         </Routes>
         </Notification>
