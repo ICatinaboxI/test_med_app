@@ -17,32 +17,38 @@ const Navbar = () => {
     sessionStorage.removeItem("name");
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("phone");
+    // remove email phone
     localStorage.removeItem("doctorData");
     setIsLoggedIn(false);
+    // setUsername("");
+
+    // Remove the reviewFormData from local storage
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith("reviewFormData_")) {
+        localStorage.removeItem(key);
+      }
+    }
     setEmail("");
-    setUsername("");
     window.location.reload();
   };
-
   const handleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-
   useEffect(() => {
-    const storedName = sessionStorage.getItem("name");
-    const storedEmail = sessionStorage.getItem("email");
-    if (storedName && storedEmail) {
+    const storedemail = sessionStorage.getItem("email");
+
+    if (storedemail) {
       setIsLoggedIn(true);
-      setUsername(storedName);
-      setEmail(storedEmail);
+      setUsername(storedemail);
     }
   }, []);
-
   return (
     <nav>
       <div className="nav__logo">
         <Link to="/">
-          StayHealthy <i style={{ color: "#2190FF" }} className="fa fa-user-md"></i>
+          StayHealthy{" "}
+          <i style={{ color: "#FF8E3C" }} className="fa fa-user-md"></i>
         </Link>
         <span>.</span>
       </div>
@@ -62,12 +68,14 @@ const Navbar = () => {
         <li className="link">
           <Link to="/reviews">Reviews</Link>
         </li>
+
+            
         {isLoggedIn ? (
           <>
+            
             <li className="link">
-              <span>Weclome, {username}</span>
+                Welcome, {username.replace("@gmail.com", '')}
             </li>
-
             <li className="link">
               <button className="btn2" onClick={handleLogout}>
                 Logout
@@ -76,10 +84,10 @@ const Navbar = () => {
           </>
         ) : (
           <>
-
-          <li className="link">
-          <Link to="/instant-consultation">Instant Consultation</Link>
-        </li>
+            <li className="link">
+                <Link to="/instant-consultation">Instant Consultant</Link>
+            </li>
+          
             <li className="link">
               <Link to="/Sign_Up">
                 <button className="btn1">Sign Up</button>
